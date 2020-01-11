@@ -10,7 +10,7 @@ import (
 	"os"
 	"os/user"
 	"path/filepath"
-	"strings"						//여기에다가 "log" 추가해서 확인한 결과임.
+	"strings"						//여기에다가 "log" 추가해서 확인한 결과이고 연결, 채팅했을때의 결과만 적음
 								//순서는 main -> getClientConn -> extractPathArgs 
 								//	-> cleanAndExpandPath -> cleanAndExpandPath
 								//마지막 함수는 두번 실행되는데 왜 두번인지 모르겠음.. 마지막 함수 안에있는
