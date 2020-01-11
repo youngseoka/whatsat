@@ -183,11 +183,11 @@ func chat(ctx *cli.Context) error {
 		return len(msgLines) - 1
 	}
 
-	sendMessage := func(g *gocui.Gui, v *gocui.View) error {
+	sendMessage := func(g *gocui.Gui, v *gocui.View) error {	//메세지 보내는곳임. 시작할때나 메세지 받을때는 작동안함
 		if len(v.BufferLines()) == 0 {
 			return nil
 		}
-		newMsg := v.BufferLines()[0]
+		newMsg := v.BufferLines()[0]				//내가 보내는 메세지 내용
 
 		v.Clear()
 		if err := v.SetCursor(0, 0); err != nil {
@@ -209,10 +209,10 @@ func chat(ctx *cli.Context) error {
 		if destination == nil {
 			return nil
 		}
-
+				
 		d := *destination
-		msgIdx := addMsg(chatLine{
-			sender:    self,
+		msgIdx := addMsg(chatLine{				//log.Panicln(&d)로 찍어보면 내가보내는 상대방의 id주소나옴
+			sender:    self,				//신기하네 self log.Panicln(self)찍으면 내 id주소 나옴
 			text:      newMsg,
 			recipient: &d,
 		})
