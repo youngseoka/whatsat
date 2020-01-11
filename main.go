@@ -10,7 +10,11 @@ import (
 	"os"
 	"os/user"
 	"path/filepath"
-	"strings"
+	"strings"						//여기에다가 "log" 추가해서 확인한 결과임.
+								//순서는 main -> getClientConn -> extractPathArgs 
+								//	-> cleanAndExpandPath -> cleanAndExpandPath
+								
+							
 
 	macaroon "gopkg.in/macaroon.v2"
 
