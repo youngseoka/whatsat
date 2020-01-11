@@ -5,7 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-
+									//여기에 "log"추가해서 얻은 결과임. 연결, 채팅했을때의 결과만 적음
+									//다른건 실행이 안되고 actionDecorator만 두번 실행됨
 	"github.com/golang/protobuf/jsonpb"
 	"github.com/golang/protobuf/proto"
 	"github.com/urfave/cli"
