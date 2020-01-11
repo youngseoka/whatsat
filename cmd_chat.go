@@ -1,5 +1,5 @@
 package main
-
+				//채팅시 시작 순서는 command -> main -> cmd_chat 순서로 진행됨
 import (
 	"bytes"
 	"context"
