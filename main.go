@@ -13,6 +13,8 @@ import (
 	"strings"						//여기에다가 "log" 추가해서 확인한 결과임.
 								//순서는 main -> getClientConn -> extractPathArgs 
 								//	-> cleanAndExpandPath -> cleanAndExpandPath
+								//마지막 함수는 두번 실행되는데 왜 두번인지 모르겠음.. 마지막 함수 안에있는
+								//함수들은 실행 안되는거같음.
 								
 							
 
