@@ -197,8 +197,8 @@ func chat(ctx *cli.Context) error {
 			return err
 		}
 
-		if newMsg[0] == '/' {
-			destHex := newMsg[1:]
+		if newMsg[0] == '/' {					//맨처음 실행할때 chat (주소 or alias)를 입력하는데 이때 입력하지 않고 넘어가면
+			destHex := newMsg[1:]				// /주소 or /alias를 입력해서 채팅을 할수있음 이때 사용하는 부분임
 			setDest(destHex)
 
 			updateView(g)
@@ -217,7 +217,7 @@ func chat(ctx *cli.Context) error {
 			recipient: &d,
 		})
 
-		err := updateView(g)
+		err := updateView(g)					
 		if err != nil {
 			return err
 		}
@@ -317,8 +317,8 @@ func chat(ctx *cli.Context) error {
 		return nil
 	}
 
-	err = g.SetKeybinding("send", gocui.KeyEnter, gocui.ModNone, sendMessage)
-	if err != nil {
+	err = g.SetKeybinding("send", gocui.KeyEnter, gocui.ModNone, sendMessage)	//마지막 send라는 뷰에 엔터를 누르면 sendMessage
+	if err != nil {									//라는 handler를? 이용해서 실행하는데 더 자세히 알아봐야 
 		return err
 	}
 
@@ -462,7 +462,7 @@ func updateView(g *gocui.Gui) error {
 		maxSenderLen = 16
 	)
 
-	sendView, _ := g.View("send")
+	sendView, _ := g.View("send")					
 	if destination == nil {
 		sendView.Title = " Set a destination by typing /pubkey "
 	} else {
@@ -482,9 +482,9 @@ func updateView(g *gocui.Gui) error {
 	}
 
 	for _, line := range msgLines[startLine:] {
-		text := line.text
-		var r string
-		if line.recipient != nil {
+		text := line.text					//딱 여기가 채팅을 받았을때 view에 보여지는 부분임. 
+		var r string						//그래서 초반에 채팅 보내는거 할떄 실수한게 여기에서 값을 추가하면
+		if line.recipient != nil {				//내 화면에서만 추가된걸로 보임.
 			r = keyToAlias[*line.recipient]
 		} else {
 			r = fmt.Sprintf("sent: %v",
