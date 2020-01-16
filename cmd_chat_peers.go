@@ -1,7 +1,7 @@
 package main
 
 import (						/*이 파일은 main.go 250번째줄에 있는 chatPeersCommand 랑 같이 사용하는데 
-							*/
+							단순히 채팅이 가능한 사람들 목록을 보여주는게 다임. 그래서 삭제해봤는데 없어도 내가 원하는기능은 잘 작동함*/
 	"bytes"
 	"context"
 	"encoding/json"
