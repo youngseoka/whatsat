@@ -246,7 +246,7 @@ func main() {
 		},
 	}
 	app.Commands = []cli.Command{
-		chatCommand, chatPeersCommand,
+		chatCommand, chatPeersCommand,					//chatPeersCommand는 주석처리하고 없애도 무방.
 	}
 
 	if err := app.Run(os.Args); err != nil {
