@@ -140,7 +140,7 @@ func setDest(destStr string) {
 }
 
 func chat(ctx *cli.Context) error {
-	chatMsgAmt := int64(ctx.Uint64("amt_msat"))
+	chatMsgAmt := int64(ctx.Uint64("amt_msat"))	//chatMsgAmt ->1000 으로 고정인데 ctx 더 파보면 나올듯 찾아볼것.
 
 	conn := getClientConn(ctx, false)
 	defer conn.Close()
@@ -224,9 +224,9 @@ func chat(ctx *cli.Context) error {
 			return err
 		}
 
-		payAmt := runningBalance[*destination]
-		if payAmt < chatMsgAmt {
-			payAmt = chatMsgAmt
+		payAmt := runningBalance[*destination]				//payAmt는 채팅할때 창에 보면 send to young1 balance : 0
+		if payAmt < chatMsgAmt {					//이런식으로 되어있는데 상대방이 보내면 1000씩 올라 그때 값이 payAmt임
+			payAmt = chatMsgAmt					//chatMsgAmt는 1000으로 고정인듯
 		}
 		if payAmt > 10*chatMsgAmt {
 			payAmt = 10 * chatMsgAmt
@@ -236,15 +236,18 @@ func chat(ctx *cli.Context) error {
 		if _, err := rand.Read(preimage[:]); err != nil {
 			return err
 		}
-		hash := preimage.Hash()
+		hash := preimage.Hash()						//hash함수는 lnd에서 찾아보니
+										//return Hash(sha256.Sum256(p[:])) 이걸 리턴함
+										//확인해보니까 이 값이 내가 채팅 보낼떄 상대방 lnd 커멘드 창에
+										//settling htlc ~~ 여기에 뜨는 hash값이네
 
 		// Message sending time stamp
-		timestamp := time.Now().UnixNano()
+		timestamp := time.Now().UnixNano()				//그 유닉스타임 그걸 nano초로 바꾼거래
 		var timeBuffer [8]byte
 		byteOrder.PutUint64(timeBuffer[:], uint64(timestamp))
 
-		// Sign all data.
-		signData, err := getSignData(
+		// Sign all data.						//유닉스 타임 거지같이나오네 ^^ 80 214 215 23 5 이딴식으로나옴
+		signData, err := getSignData(					//아래에 getSignData 확인하는데 값이 그냥 터지네; 0 34 25 3 23 이딴식으로 나오네 저것도 
 			self, *destination, timeBuffer[:], []byte(newMsg),
 		)
 		if err != nil {
