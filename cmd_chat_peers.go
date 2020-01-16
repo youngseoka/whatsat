@@ -1,6 +1,7 @@
 package main
 
-import (
+import (						/*이 파일은 main.go 250번째줄에 있는 chatPeersCommand 랑 같이 사용하는데 
+							*/
 	"bytes"
 	"context"
 	"encoding/json"
