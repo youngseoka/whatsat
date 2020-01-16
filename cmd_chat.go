@@ -177,8 +177,8 @@ func chat(ctx *cli.Context) error {
 	if err := g.SetKeybinding("", gocui.KeyCtrlC, gocui.ModNone, quit); err != nil {
 		log.Panicln(err)
 	}
-
-	addMsg := func(line chatLine) int {
+		
+	addMsg := func(line chatLine) int {				/*내가 보내는 채팅, 내가 받는채팅 한줄한줄 추가하는부분*/
 		msgLines = append(msgLines, line)
 		return len(msgLines) - 1
 	}
