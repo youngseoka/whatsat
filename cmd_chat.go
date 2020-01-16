@@ -187,7 +187,9 @@ func chat(ctx *cli.Context) error {
 		if len(v.BufferLines()) == 0 {
 			return nil
 		}
-		newMsg := v.BufferLines()[0]				//내가 보내는 메세지 내용
+		newMsg := v.BufferLines()[0]				//내가 보내는 메세지 내용, gocui/view.go에 bufferline함수가 정의 되어있는데
+									// [0] 여기에 내가보내는 채팅 내용이 저장되어있음 뒤에는 뭐 00 35 46 22 이런식으로
+									// 못알아보게 숫자들이있음.. 추후에 뭔지 알아볼것.
 
 		v.Clear()
 		if err := v.SetCursor(0, 0); err != nil {
