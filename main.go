@@ -225,7 +225,7 @@ func main() {
 			Name: "network, n",
 			Usage: "the network lnd is running on e.g. mainnet, " +
 				"testnet, etc.",
-			Value: "mainnet",
+			Value: "mainnet",						//testnet으로 바꾸면 편함
 		},
 		cli.BoolFlag{
 			Name:  "no-macaroons",
