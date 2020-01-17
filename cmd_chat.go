@@ -23,8 +23,8 @@ import (
 	"github.com/urfave/cli"
 )
 
-var chatCommand = cli.Command{
-	Name:      "chat",
+var chatCommand = cli.Command{						//명령어 지정하는부분임 다른건 잘 모르겠는데 저기 action부분이
+	Name:      "chat",						//저 명령어가 실행됬을때 아래에 함수로 지정해두면 실행되는거같음
 	Category:  "Chat",
 	ArgsUsage: "recipient_pubkey",
 	Usage:     "Use lnd as a p2p messenger application.",
@@ -41,7 +41,7 @@ var chatCommand = cli.Command{
 var byteOrder = binary.BigEndian
 
 const (
-	tlvMsgRecord    = 34349334
+	tlvMsgRecord    = 34349334						//?? 이해가 안되네 뒤에 바로 다른값으로 바꾸면서 이걸 왜넣는거야
 	tlvSigRecord    = 34349337
 	tlvSenderRecord = 34349339
 	tlvTimeRecord   = 34349343
@@ -60,7 +60,7 @@ const (
 	stateFailed
 )
 
-type chatLine struct {
+type chatLine struct {								//내가쓰는 채팅 한줄한줄이 구조체 덩어리인데 그 구조체의 구조임
 	text      string
 	sender    route.Vertex
 	recipient *route.Vertex
